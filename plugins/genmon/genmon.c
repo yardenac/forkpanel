@@ -51,7 +51,7 @@ text_update(genmon_priv *gm)
         if (text[len] == '\n')
             text[len] = 0;
         
-        ret = sprintf(markup,gm->textfmt, text);
+        markup = g_markup_printf_escaped(gm->textfmt, text);
         gtk_label_set_markup (GTK_LABEL(gm->main), markup);
         g_free(markup);
     }

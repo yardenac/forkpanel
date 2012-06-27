@@ -24,13 +24,16 @@
 //#define DEBUG
 #include "dbg.h"
 
+#define FMT "<span size='%s' foreground='%s'>%s</span>"
+
 typedef struct {
     plugin_instance plugin;
     int time;
     int timer;
     int max_text_len;
     char *command;
-    char *textfmt;
+    char *textsize;
+    char *textcolor;
     GtkWidget *main;
 } genmon_priv;
 
@@ -40,7 +43,7 @@ text_update(genmon_priv *gm)
     FILE *fp;  
     char text[256];
     char *markup;
-    int len, ret;
+    int len;
 
     ENTER;
     fp = popen(gm->command, "r");
@@ -51,7 +54,8 @@ text_update(genmon_priv *gm)
         if (text[len] == '\n')
             text[len] = 0;
         
-        markup = g_markup_printf_escaped(gm->textfmt, text);
+        markup = g_markup_printf_escaped(FMT, gm->textsize, gm->textcolor,
+            text);
         gtk_label_set_markup (GTK_LABEL(gm->main), markup);
         g_free(markup);
     }
@@ -79,11 +83,13 @@ genmon_constructor(plugin_instance *p)
     gm = (genmon_priv *) p;
     gm->command = "date +%R";
     gm->time = 1;
-    gm->textfmt = "<span>%s</span>";
+    gm->textsize = "medium";
+    gm->textcolor = "darkblue";
     gm->max_text_len = 30;
     
     XCG(p->xc, "Command", &gm->command, str);
-    XCG(p->xc, "TextFmt", &gm->textfmt, str);
+    XCG(p->xc, "TextSize", &gm->textsize, str);
+    XCG(p->xc, "TextColor", &gm->textcolor, str);
     XCG(p->xc, "PollingTime", &gm->time, int);
     XCG(p->xc, "MaxTextLength", &gm->max_text_len, int);
     

@@ -6,10 +6,10 @@ arch=(i686 x86_64)
 provides=(fbpanel)
 conflicts=(fbpanel)
 makedepends=(git automake autoconf)
-url=https://github.com/twomen/forkpanel
+url=https://github.com/yardenac/forkpanel
 depends=(gtk2)
 license=GPL
-_gitroot=https://github.com/twomen/forkpanel.git
+_gitroot=https://github.com/yardenac/forkpanel.git
 _gitname=forkpanel
 
 build() {

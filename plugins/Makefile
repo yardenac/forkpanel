@@ -11,6 +11,7 @@ SUBDIRS := battery \
     genmon \
     icons \
     image \
+    inmon \
     launchbar \
     mem \
     mem2 \

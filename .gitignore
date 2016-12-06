@@ -2,3 +2,7 @@ config.mk
 config.h
 repl.py
 .config/*.pyc
+*.log
+.git/
+arch/src/
+arch/pkg/

@@ -37,7 +37,7 @@ text_update(inmon_priv *im)
         if (text[len] == '\n')
             text[len] = 0;
 
-        markup = g_markup_printf_escaped(FMT, im->textfmt, text);
+        markup = g_markup_printf_escaped(im->textfmt, text);
         gtk_label_set_markup (GTK_LABEL(im->main), markup);
         g_free(markup);
     }

@@ -5,7 +5,7 @@ pkgdesc="fork of fbpanel"
 arch=(i686 x86_64)
 provides=(fbpanel)
 conflicts=(fbpanel)
-makedepends=(git automake autoconf)
+makedepends=(git python2)
 url=https://github.com/yardenac/${pkgname}
 depends=(gtk2)
 license=(GPL)
@@ -18,10 +18,14 @@ pkgver() {
 	printf "%s" "${ver//-/.}"
 }
 
+prepare() {
+  cd "$srcdir/$pkgname"
+  sed -i 's|python|python2|' configure .config/{repl.py,help,tar.py}
+}
+
 build() {
 	cd "${srcdir}/${pkgname}"
-	./configure --prefix=/usr
-	echo "LDFLAGSX += -lX11 -lm" >>config.mk
+   ./configure --libexecdir /usr/lib/fbpanel --prefix /usr --mandir /usr/share/man
 	ionice -c 3 nice -n 19 make
 }
 package() {

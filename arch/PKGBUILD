@@ -8,7 +8,7 @@ conflicts=(fbpanel)
 makedepends=(git automake autoconf)
 url=https://github.com/yardenac/forkpanel
 depends=(gtk2)
-license=GPL
+license=(GPL)
 _gitroot=https://github.com/yardenac/forkpanel.git
 _gitname=forkpanel
 

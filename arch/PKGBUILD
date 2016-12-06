@@ -1,5 +1,5 @@
 pkgname=forkpanel
-pkgver=0.$(date +%s)
+pkgver=517.276afaf
 pkgrel=1
 pkgdesc="fork of fbpanel"
 arch=(i686 x86_64)

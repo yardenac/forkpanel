@@ -28,7 +28,7 @@ enum { LAYER_ABOVE, LAYER_BELOW };
 #define PANEL_HEIGHT_MAX      200
 #define PANEL_HEIGHT_MIN      16
 
-#define IMGPREFIX  DATADIR "/fbpanel/images"
+#define IMGPREFIX  DATADIR "/images"
 
 typedef struct _panel
 {
@@ -47,10 +47,10 @@ typedef struct _panel
     guint32 tintcolor;
     GdkColor gtintcolor;
     gchar *tintcolor_name;
-    
+
     int ax, ay, aw, ah;  /* prefferd allocation of a panel */
     int cx, cy, cw, ch;  /* current allocation (as reported by configure event) allocation */
-    int allign, edge, margin;
+    int allign, edge, xmargin, ymargin;
     GtkOrientation orientation;
     int widthtype, width;
     int heighttype, height;
@@ -66,7 +66,7 @@ typedef struct _panel
     gint ah_far;
     gint layer;
     gint setlayer;
-    
+
     int ah_dx, ah_dy; // autohide shift for x and y
     int height_when_hidden;
     guint hide_tout;

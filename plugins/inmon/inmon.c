@@ -30,14 +30,14 @@ text_update(inmon_priv *im)
 
     ENTER;
     fp = popen(im->command, "r");
-    fgets(text, sizeof(text), fp);
+    if (fgets(text, sizeof(text), fp));
     pclose(fp);
     len = strlen(text) - 1;
     if (len >= 0) {
         if (text[len] == '\n')
             text[len] = 0;
 
-        markup = g_markup_printf_escaped(im->textfmt, text);
+        markup = g_markup_printf_escaped(FMT, im->textfmt, text);
         gtk_label_set_markup (GTK_LABEL(im->main), markup);
         g_free(markup);
     }
@@ -90,7 +90,7 @@ static plugin_class class = {
     .count       = 0,
     .type        = "inmon",
     .name        = "Inotify Monitor",
-    .version     = "0.1",
+    .version     = "0.2",
     .description = "genmon with inotify waits instead of looping",
     .priv_size   = sizeof(inmon_priv),
 
